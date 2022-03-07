@@ -1,5 +1,15 @@
+@font-face { 
+    font-family: 'yekan'; 
+    font-weight: bold;
+    font-style: italic;
+    src: url('./font/Yekan/Yekan.eot')  format('eot'),
+            url('./font/Yekan/Yekan.woff')  format('woff'),
+            url('./font/Yekan/Yekan.ttf')   format('ttf'),
+            url('./font/Yekan/Yekan.svg')  format('svg'); 
+}
 .App-components{
     margin: 0 !important;
     min-height: 100vh;
-    background-color: #EEEEEE;
+    background-color: #D8D2CB;
+    font-family: "yekan";
 }

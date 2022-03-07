@@ -25,8 +25,8 @@ const MobileNav = () => {
             <ul>
                 <li class="list active">
                     <Link to="#">
-                        <span class="icon"><TableChartIcon fontSize="large" color="primary" /></span>
-                        <span class="text">لاگ کاربران</span>
+                        <span class="icon"><HomeIcon fontSize="large" color="primary" /></span>
+                        <span class="text">خانه</span>
                     </Link>
                 </li>
                 <li class="list">
@@ -37,8 +37,8 @@ const MobileNav = () => {
                 </li>
                 <li class="list">
                     <Link to="#">
-                        <span class="icon"><HomeIcon fontSize="large" color="primary" /></span>
-                        <span class="text">خانه</span>
+                        <span class="icon"><TableChartIcon fontSize="large" color="primary" /></span>
+                        <span class="text">لاگ کاربران</span>
                     </Link>
                 </li>
                 <li class="list">
