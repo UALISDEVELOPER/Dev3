@@ -24,19 +24,19 @@ const MobileNav = () => {
         <div class="navigation">
             <ul>
                 <li class="list active">
-                    <Link to="#">
+                    <Link to="/home/">
                         <span class="icon"><HomeIcon fontSize="large" color="primary" /></span>
                         <span class="text">خانه</span>
                     </Link>
                 </li>
                 <li class="list">
-                    <Link to="#">
+                    <Link to="/home/applog/">
                         <span class="icon"><AppsIcon fontSize="large" color="primary" /></span>
                         <span class="text">برنامه ها</span>
                     </Link>
                 </li>
                 <li class="list">
-                    <Link to="#">
+                    <Link to="/home/userlog/">
                         <span class="icon"><TableChartIcon fontSize="large" color="primary" /></span>
                         <span class="text">لاگ کاربران</span>
                     </Link>

@@ -116,7 +116,7 @@ const Login = () => {
                     console.log(response.data.output.refreshToken);
                     console.log("loged in");
                     handleOpenSucceedSnackBar("ورود انجام شد");
-                    navigate('/' , {replace : true});
+                    navigate('/home/' , {replace : true});
                 }
                 setLoading(false)
             })

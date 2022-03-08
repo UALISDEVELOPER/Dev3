@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Link, Routes, Route, useNavigate} from "react-router-dom"
+import { Routes, Route, useNavigate} from "react-router-dom"
 
 //COMPONENTS
 import Login from './components/Authentication/Login';
@@ -29,7 +29,7 @@ const App = () => {
       <Routes>
         <Route path="/login/" element={<Login/>}/>
         <Route path="/signup/" element={<Signup/>}/>
-        <Route path="/" element={<Home/>}/>
+        <Route path="/home//*" element={<Home/>}/>
       </Routes>
     </div>
   );

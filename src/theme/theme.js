@@ -16,7 +16,7 @@ const yekan = {
 
 const fontTheme = createTheme({
     typography: {
-      fontFamily: ['"Open Sans"', 'Yekan', 'Roboto'].join(','),
+      fontFamily: [ 'Roboto', 'Yekan','Open Sans'].join(','),
     },
     overrides: {
       MuiCssBaseline: {

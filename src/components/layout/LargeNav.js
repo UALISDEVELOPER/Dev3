@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React from 'react';
+import { useNavigate, Link } from 'react-router-dom';
 
 //mui
 import AppBar from '@mui/material/AppBar';
@@ -16,6 +16,9 @@ import MenuItem from '@mui/material/MenuItem';
 
 //mui color
 import { deepPurple } from '@mui/material/colors';
+
+//style
+import "./style/largeNav.scss";
 
 
 const LargeNav = () => {
@@ -46,7 +49,7 @@ const LargeNav = () => {
 
 
     return (
-      <AppBar position="static" id="largeNav" color="action" >
+      <AppBar position="fixed"  id="largeNav" color="action" >
         <Container maxWidth="xl">
           <Toolbar disableGutters>
             <Typography
@@ -88,13 +91,19 @@ const LargeNav = () => {
                 }}
               >
                 <MenuItem onClick={handleCloseNavMenu}>
+                  <Link to="/">
                     <Typography textAlign="center">خانه</Typography>
+                  </Link>
                 </MenuItem>
                 <MenuItem onClick={handleCloseNavMenu}>
-                    <Typography textAlign="center">برنامه ها</Typography>
+                  <Link to="/applog/">
+                      <Typography textAlign="center">برنامه ها</Typography>
+                  </Link>
                 </MenuItem>
                 <MenuItem onClick={handleCloseNavMenu}>
+                  <Link to="/userlog/">
                     <Typography textAlign="center">لاگ کابران</Typography>
+                  </Link>
                 </MenuItem>
                 <MenuItem onClick={handleCloseNavMenu}>
                     <Typography textAlign="center">اطلاعات</Typography>
@@ -111,13 +120,19 @@ const LargeNav = () => {
             </Typography>
             <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
                 <MenuItem onClick={handleCloseNavMenu}>
+                  <Link to="/home/">
                     <Typography textAlign="center">خانه</Typography>
+                  </Link>
                 </MenuItem>
                 <MenuItem onClick={handleCloseNavMenu}>
-                    <Typography textAlign="center">برنامه ها</Typography>
+                  <Link to="/home/applog/">
+                      <Typography textAlign="center">برنامه ها</Typography>
+                  </Link>
                 </MenuItem>
                 <MenuItem onClick={handleCloseNavMenu}>
+                  <Link to="/home/userlog/">
                     <Typography textAlign="center">لاگ کابران</Typography>
+                  </Link>
                 </MenuItem>
                 <MenuItem onClick={handleCloseNavMenu}>
                     <Typography textAlign="center">اطلاعات</Typography>
