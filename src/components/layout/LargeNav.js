@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 //mui
 import AppBar from '@mui/material/AppBar';
@@ -10,12 +11,11 @@ import Menu from '@mui/material/Menu';
 import MenuIcon from '@mui/icons-material/Menu';
 import Container from '@mui/material/Container';
 import Avatar from '@mui/material/Avatar';
-import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 
-
-const pages = ['Products', 'Pricing', 'Blog'];
+//mui color
+import { deepPurple } from '@mui/material/colors';
 
 
 const LargeNav = () => {
@@ -37,6 +37,14 @@ const LargeNav = () => {
       setAnchorElUser(null);
     };
   
+    const Navigate = useNavigate();
+
+    const logoutHandler = () =>{
+      localStorage.clear();
+      Navigate("/login", {replace : true})
+    }
+
+
     return (
       <AppBar position="static" id="largeNav" color="action" >
         <Container maxWidth="xl">
@@ -117,11 +125,13 @@ const LargeNav = () => {
             </Box>
   
             <Box sx={{ flexGrow: 0 }}>
-              <Tooltip title="">
-                <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                  <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
-                </IconButton>
-              </Tooltip>
+                  <Tooltip title="">
+                    <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+                      <Avatar sx={{ bgcolor: deepPurple[500] }}>
+                        {localStorage.getItem("userEmail").split("")[0].toUpperCase()}
+                      </Avatar>
+                    </IconButton>
+                  </Tooltip>
               <Menu
                 sx={{ mt: '45px' }}
                 id="menu-appbar"
@@ -141,7 +151,7 @@ const LargeNav = () => {
                 <MenuItem onClick={handleCloseUserMenu}>
                     <Typography textAlign="center">پروفایل</Typography>
                 </MenuItem>
-                <MenuItem onClick={handleCloseUserMenu}>
+                <MenuItem onClick={logoutHandler}>
                     <Typography textAlign="center">خروج</Typography>
                 </MenuItem>
               </Menu>

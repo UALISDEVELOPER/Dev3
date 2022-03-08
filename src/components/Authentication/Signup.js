@@ -131,13 +131,14 @@ const Signup = () => {
                 .catch((error)=> {
                     // error.response.data.status=422 && handleOpenFailedSnackBar("ایمیل قبلا ثبت شده است")
                     console.log(error.response.data);
-                    if(error.response.data.message=='This email address exsits, Please enter a valid one.'){
-                        handleOpenFailedSnackBar("ایمیل قبلا ثبت شده است")
-                    }else if (error.response.data.message=='This national Code already exsits, Please enter a valid one.'){
-                        handleOpenFailedSnackBar("کد ملی قبلا ثبت شده است")
-                    }else{
-                        handleOpenFailedSnackBar(" مشکلی پیش آمده است اطلاعات وارد شده را برسی کنید")
-                    }
+                    handleOpenFailedSnackBar(error.response.data.error)
+                    // if(error.response.data.message=='This email address exsits, Please enter a valid one.'){
+                    //     handleOpenFailedSnackBar("ایمیل قبلا ثبت شده است")
+                    // }else if (error.response.data.message=='This national Code already exsits, Please enter a valid one.'){
+                    //     handleOpenFailedSnackBar("کد ملی قبلا ثبت شده است")
+                    // }else{
+                    //     handleOpenFailedSnackBar(" مشکلی پیش آمده است اطلاعات وارد شده را برسی کنید")
+                    // }
                     setLoading(false)
                 })
             console.log("succed")
@@ -176,9 +177,6 @@ const Signup = () => {
                 sx={{
                 display: 'flex',
                 justifyContent: 'space-evenly',
-                p: 1,
-                m: 1,
-                bgcolor: 'background.paper',
                 borderRadius: 1,
                 }}
                 >
