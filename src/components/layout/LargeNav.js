@@ -106,7 +106,9 @@ const LargeNav = () => {
                   </Link>
                 </MenuItem>
                 <MenuItem onClick={handleCloseNavMenu}>
-                    <Typography textAlign="center">اطلاعات</Typography>
+                  <Link to="/home/createApp/">
+                    <Typography textAlign="center">ایجاد برنامه</Typography>
+                  </Link>
                 </MenuItem>
               </Menu>
             </Box>
@@ -135,7 +137,9 @@ const LargeNav = () => {
                   </Link>
                 </MenuItem>
                 <MenuItem onClick={handleCloseNavMenu}>
-                    <Typography textAlign="center">اطلاعات</Typography>
+                  <Link to="/home/createApp/">
+                    <Typography textAlign="center">ایجاد برنامه</Typography>
+                  </Link>
                 </MenuItem>
             </Box>
   

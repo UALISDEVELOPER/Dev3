@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import TableChartIcon from '@mui/icons-material/TableChart';
 import AppsIcon from '@mui/icons-material/Apps';
 import HomeIcon from '@mui/icons-material/Home';
-import InfoIcon from '@mui/icons-material/Info';
+import AppRegistrationIcon from '@mui/icons-material/AppRegistration';
 import PersonIcon from '@mui/icons-material/Person';
 
 
@@ -42,9 +42,9 @@ const MobileNav = () => {
                     </Link>
                 </li>
                 <li class="list">
-                    <Link to="#">
-                        <span class="icon"><InfoIcon fontSize="large" color="primary" /></span>
-                        <span class="text">اطلاعات</span>
+                    <Link to="/home/createApp/">
+                        <span class="icon"><AppRegistrationIcon fontSize="large" color="primary" /></span>
+                        <span class="text">ایجاد برنامه</span>
                     </Link>
                 </li>
                 <li class="list">

@@ -9,6 +9,7 @@ import MobileNav from './MobileNav';
 //components
 import AppLog from '../util/AppLog';
 import UserLog from '../util/UserLog';
+import CreateApp from '../util/CreateApp';
 
 
 const Home = () => {
@@ -36,6 +37,7 @@ const Home = () => {
             <Routes>
                 <Route path="/applog/" element={<AppLog/>}/>
                 <Route path="/userlog/" element={<UserLog/>}/>
+                <Route path="/createApp/" element={<CreateApp/>}/>
             </Routes>
         </div>
     );
