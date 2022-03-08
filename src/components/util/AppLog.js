@@ -5,6 +5,8 @@ import axios from 'axios';
 //mui
 import Grid from '@mui/material/Grid';
 import Paper from '@mui/material/Paper';
+import CircularProgress from '@mui/material/CircularProgress';
+import Box from '@mui/material/Box';
 
 //mui diolog
 import PropTypes from 'prop-types';
@@ -26,12 +28,16 @@ import "./style/applog.scss";
 
 const AppLog = () => {
     
+    //========loading=======================
+    const [loading, setLoading] = useState(false);
+    //========loading=======================
     
     const [tookenData, setTookenData] = useState(false)
 
     const [tookenDetails, setTookenDetails] = useState(false);
 
     useEffect(()=>{
+        setLoading(true)
         const URL = "https://dev3.satpay.ir/application/read?SDate=&EDate=Z&appName=&skip=0&userID="
         const config = {
             headers: {
@@ -42,9 +48,13 @@ const AppLog = () => {
         axios.get(URL, config)
             .then(response =>{
                 console.log(response);
-                setTookenData(response.data.output.data)   
+                setTookenData(response.data.output.data);
+                setLoading(false);   
             })
-            .catch(error => console.log(error.response))
+            .catch(error =>{
+                setLoading(false);   
+                console.log(error.response);
+            })
     },[])
 
 
@@ -124,59 +134,76 @@ const AppLog = () => {
         
         //============= Dialog ============================
         
-        return (
+    return (
+        <>
+            {loading &&
+                <Box
+                sx={{
+                display: 'flex',
+                justifyContent: 'space-evenly',
+                borderRadius: 1,
+                }}
+                >
+                    <div className='circularProgressDiv'>
+                        <CircularProgress />
+                        <p>لطفا منتظر بمانید</p>
+                    </div>
+                </Box>
+            
+            }
             <Grid container spacing={2}>
-            <Grid xs={12} className='headerGrid'>
-                <h2>لیست برنامه های ساخته شده</h2>
-            </Grid>
-            <Grid item xs={1} sm={1} md={2}></Grid>
-            <Grid item xs={10} sm={10} md={8}>
+                <Grid xs={12} className='headerGrid'>
+                    <h2>لیست برنامه های ساخته شده</h2>
+                </Grid>
+                <Grid item xs={1} sm={1} md={2}></Grid>
+                <Grid item xs={10} sm={10} md={8}>
 
-                <TableContainer component={Paper} className='table-container'>
-                    <Table aria-label="simple table">
-                        <TableHead>
-                            <TableRow>
-                                <TableCell align="left">نام برنامه</TableCell>
-                                <TableCell align="left">محیط</TableCell>
-                                <TableCell align="left">سطح</TableCell>
-                                <TableCell align="left">اطلاعات</TableCell>
-                            </TableRow>
-                        </TableHead>
-                        <TableBody>
-                            {tookenData &&
-                            tookenData.map(item=>{
-                                return(
-                                    <TableRow>
-                                        <TableCell align="left">{item.appName}</TableCell>
-                                        <TableCell align="left">
-                                            {
-                                                item.mode === "sand" ? <p>تستی</p> : <p>عملیاتی</p>
-                                            }
-                                        </TableCell>
-                                        <TableCell align="left">
-                                            {
-                                                item.scale
-                                            }
-                                        </TableCell>
-                                        <TableCell align="left" onClick={()=>handleClickOpen(item.appName)}>
-                                            <MoreOutlinedIcon/>
-                                        </TableCell>
-                                    </TableRow>
-                                )
-                            })}
-                        </TableBody>
-                    </Table>
-                </TableContainer>
+                    <TableContainer component={Paper} className='table-container'>
+                        <Table aria-label="simple table">
+                            <TableHead>
+                                <TableRow>
+                                    <TableCell align="left">نام برنامه</TableCell>
+                                    <TableCell align="left">محیط</TableCell>
+                                    <TableCell align="left">سطح</TableCell>
+                                    <TableCell align="left">اطلاعات</TableCell>
+                                </TableRow>
+                            </TableHead>
+                            <TableBody>
+                                {tookenData &&
+                                tookenData.map(item=>{
+                                    return(
+                                        <TableRow>
+                                            <TableCell align="left">{item.appName}</TableCell>
+                                            <TableCell align="left">
+                                                {
+                                                    item.mode === "sand" ? <p>تستی</p> : <p>عملیاتی</p>
+                                                }
+                                            </TableCell>
+                                            <TableCell align="left">
+                                                {
+                                                    item.scale
+                                                }
+                                            </TableCell>
+                                            <TableCell align="left" onClick={()=>handleClickOpen(item.appName)}>
+                                                <MoreOutlinedIcon/>
+                                            </TableCell>
+                                        </TableRow>
+                                    )
+                                })}
+                            </TableBody>
+                        </Table>
+                    </TableContainer>
 
-                {/* ========Dialog========== */}
-                <SimpleDialog
-                    open={open}
-                    onClose={handleClose}
-                />
-                {/* ========Dialog========== */}
+                    {/* ========Dialog========== */}
+                    <SimpleDialog
+                        open={open}
+                        onClose={handleClose}
+                        />
+                    {/* ========Dialog========== */}
+                </Grid>
+                <Grid item xs={1} sm={1} md={2}></Grid>
             </Grid>
-            <Grid item xs={1} sm={1} md={2}></Grid>
-        </Grid>
+        </>
     );
 };
 

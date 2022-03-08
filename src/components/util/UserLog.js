@@ -10,6 +10,8 @@ import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import InputLabel from '@mui/material/InputLabel';
 import Select from '@mui/material/Select';
+import CircularProgress from '@mui/material/CircularProgress';
+import Box from '@mui/material/Box';
 
 //mui table
 import Table from '@mui/material/Table';
@@ -38,7 +40,10 @@ const UserLog = () => {
       setExpanded(isExpanded ? panel : false);
     };
     //================= accordion ======================
-
+    
+    //========loading=======================
+    const [loading, setLoading] = useState(false);
+    //========loading=======================
 
     //================= filter data ====================
 
@@ -64,6 +69,7 @@ const UserLog = () => {
       };
 
       const submitFilter = () =>{
+            setLoading(true);
             const URL = `https://dev3.satpay.ir/log/read?SDate=&EDate=&appName=${filterData.appName}&skip=&url=${filterData.url}&userID=`;
             const config = {
                 headers: {
@@ -74,20 +80,24 @@ const UserLog = () => {
             axios.get(URL, config)
                 .then(response =>{
                     console.log(response);
-                    setTookenData(response.data.output.data)   
+                    setTookenData(response.data.output.data);
+                    setLoading(false); 
                 })
-                .catch(error => console.log(error.response))
+                .catch(error =>{
+                    setLoading(false);
+                    console.log(error.response);
+                })
 
                 console.log(URL);
       }
 
-    //================= filter data ====================
-
+      //================= filter data ====================
+      
 
     const [tookenData, setTookenData] = useState(false)
 
     useEffect(()=>{
-
+        setLoading(true);
         const URL = `https://dev3.satpay.ir/log/read?SDate=&EDate=&appName=${filterData.appName}&skip=&url=${filterData.url}&userID=`;
         const config = {
             headers: {
@@ -98,14 +108,36 @@ const UserLog = () => {
         axios.get(URL, config)
             .then(response =>{
                 console.log(response);
-                setTookenData(response.data.output.data)   
+                setTookenData(response.data.output.data);
+                setLoading(false);
             })
-            .catch(error => console.log(error.response))
+            .catch(error =>{
+                console.log(error.response);
+                setLoading(false)
+            })
     },[])
       
+    
+
+
     return(
 
         <>
+            {loading &&
+                <Box
+                sx={{
+                display: 'flex',
+                justifyContent: 'space-evenly',
+                borderRadius: 1,
+                }}
+                >
+                    <div className='circularProgressDiv'>
+                        <CircularProgress />
+                        <p>لطفا منتظر بمانید</p>
+                    </div>
+                </Box>
+            
+            }
             <Grid container spacing={2}>
                 <Grid xs={12} className='headerGrid'>
                     <h2>لیست لاگ کاربران</h2>
