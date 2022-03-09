@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import {useNavigate} from "react-router-dom";
+import {useNavigate, Link} from "react-router-dom";
 import axios from "axios";
 
 //MUI components
@@ -219,6 +219,11 @@ const Login = () => {
                                     <Button variant="contained" color="success" fullWidth onClick={loginHandler}>
                                     ورود
                                     </Button>
+                                </Grid>
+                                <Grid item xs={12} className="signinLink">
+                                    <Link to="/signup/">
+                                        ثبت نام
+                                    </Link>
                                 </Grid>
                             </Grid>
                         </Grid>
